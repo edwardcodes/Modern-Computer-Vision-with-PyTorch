@@ -31,10 +31,7 @@ class DQNetworkImageSensor(nn.Module):
         
     def forward(self, image, lidar=None, sensor=None):
         x = self.image_branch(image)
-        if lidar is None:
-            y = 0
-        else:
-            y = self.lidar_branch(lidar)
+        y = 0 if lidar is None else self.lidar_branch(lidar)
         z = self.sensor_branch(sensor)
 
         return x + y + z
