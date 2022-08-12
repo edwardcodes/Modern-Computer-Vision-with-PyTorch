@@ -33,5 +33,4 @@ async def upload_file(request: Request, file:UploadFile=File(...)):
 def predict(request: Request, file:UploadFile=File(...)):
     content = file.file.read()
     image = Image.open(io.BytesIO(content)).convert('L')
-    output = model.predict_from_image(image)
-    return output
+    return model.predict_from_image(image)
